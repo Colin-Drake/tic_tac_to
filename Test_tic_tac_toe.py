@@ -25,9 +25,9 @@ class TestCheckWinCondition(unittest.TestCase):
     def test_row_no_win(self):
         game_piece = "X"
 
-        current_game_board = {"1": {"a": "O", "b": "O", "c": " "},
+        current_game_board = {"1": {"a": "X", "b": " ", "c": "X"},
                               "2": {"a": "X", "b": " ", "c": "X"},
-                              "3": {"a": "X", "b": "O", "c": "O"}}
+                              "3": {"a": "O", "b": " ", "c": "O"}}
         result = check_rows_win(current_game_board, game_piece)
         self.assertFalse(result)
 
@@ -43,8 +43,8 @@ class TestCheckWinCondition(unittest.TestCase):
     def test_column_no_win(self):
         game_piece = "X"
 
-        current_game_board = {"1": {"a": "O", "b": "O", "c": " "},
-                              "2": {"a": "X", "b": " ", "c": "X"},
+        current_game_board = {"1": {"a": "X", "b": " ", "c": "X"},
+                              "2": {"a": " ", "b": " ", "c": "X"},
                               "3": {"a": "X", "b": "O", "c": "O"}}
         result = check_columns_win(current_game_board, game_piece)
         self.assertFalse(result)
@@ -71,9 +71,9 @@ class TestCheckWinCondition(unittest.TestCase):
     def test_Diagonal_no_win(self):
         game_piece = "X"
 
-        current_game_board = {"1": {"a": "O", "b": "O", "c": " "},
-                              "2": {"a": "X", "b": " ", "c": "X"},
-                              "3": {"a": "X", "b": "O", "c": "O"}}
+        current_game_board = {"1": {"a": " ", "b": "O", "c": "X"},
+                              "2": {"a": " ", "b": " ", "c": "O"},
+                              "3": {"a": " ", "b": "O", "c": "O"}}
         result = check_diagonal_win(current_game_board, game_piece)
         self.assertFalse(result)
 

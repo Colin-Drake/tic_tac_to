@@ -3,7 +3,6 @@ CHAR_INDICES = ["a", "b", "c"]
 WIN_CONDITION = False
 
 
-
 def get_player_input(player):  # -> (num, letter) or None. TODO should return command instead of None
     help_message = "sample help"
     input_error_message = "sample input error"
@@ -15,8 +14,8 @@ def get_player_input(player):  # -> (num, letter) or None. TODO should return co
 
     if len(clean_user_input) == 2:
         try:
-            coords["y"] = str(int(user_input[1]))
-            coords["x"] = user_input[0].lower()
+            coords["y"] = str(int(clean_user_input[1]))
+            coords["x"] = clean_user_input[0].lower()
             return coords
         except:
             pass
@@ -37,7 +36,7 @@ def print_board(current_game_board):
           f"3 {current_game_board['3']['a']}  {current_game_board['3']['b']}  {current_game_board['3']['c']}\n")
 
 
-def new_game_board():  # feels unnecessary
+def new_game_board():
     print("sample new game text")
     return {"1": {"a": " ", "b": " ", "c": " "},
             "2": {"a": " ", "b": " ", "c": " "},
@@ -51,7 +50,7 @@ def get_game_piece(player):
         return "O"
 
 
-def update_board(game_board, player, coords, game_piece):  # -> updated game_board or None if error
+def update_board(game_board, coords, game_piece):  # -> updated game_board or None if error
     range_error_message = "sample range error"
     space_taken_message = "sample space taken error"
 
@@ -106,12 +105,14 @@ def check_diagonal_win(current_game_board, game_piece):
         return True
 
     is_row_diagonal = True
-    for (idx, char_index) in enumerate(CHAR_INDICES[-1:]):
+    for (idx, char_index) in enumerate(reversed(CHAR_INDICES)):
         num_index = NUM_INDICES[idx]
+        my_coords = [num_index, char_index]
 
         if current_game_board[num_index][char_index] != game_piece:
             is_row_diagonal = False
             break
+
     if is_row_diagonal is True:
         return True
 

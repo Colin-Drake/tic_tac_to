@@ -21,7 +21,7 @@ def run_game():
         if new_move is None:
             continue
         else:
-            updated_game_board = update_board(current_game_board, player, new_move, game_piece)
+            updated_game_board = update_board(current_game_board, new_move, game_piece)
             if updated_game_board is None:
                 continue
             current_game_board = updated_game_board
